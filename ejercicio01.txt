@@ -18,11 +18,11 @@ mixin Navegador {
   }
 }
 
-// Clase base 
+// Clase base
 
 class Vehiculo {
-  void mostrarTipo() {
-    print("Soy un vehículo");
+  void usarVehiculo() {
+    print("Usando vehículo genérico");
   }
 }
 
@@ -32,8 +32,10 @@ class Avion extends Vehiculo with Volador, Acelerador {
   String nombre = "Boeing 747";
 
   @override
-  void mostrarTipo() {
+  void usarVehiculo() {
     print("Avión: $nombre");
+    volar();
+    acelerar();
   }
 }
 
@@ -41,8 +43,10 @@ class Bote extends Vehiculo with Navegador, Acelerador {
   String nombre = "Titanic";
 
   @override
-  void mostrarTipo() {
+  void usarVehiculo() {
     print("Bote: $nombre");
+    navegar();
+    acelerar();
   }
 }
 
@@ -50,29 +54,29 @@ class Auto extends Vehiculo with Acelerador {
   String nombre = "Toyota Corolla";
 
   @override
-  void mostrarTipo() {
+  void usarVehiculo() {
     print("Auto: $nombre");
+    acelerar();
   }
 }
 
-// Funcion principal
+// Función principal
 
 void main() {
-  var avion = Avion();
-  var bote = Bote();
-  var auto = Auto();
+  // INPUT
+  List<Vehiculo> vehiculos = [];
 
-  print("---- Avión ----");
-  avion.mostrarTipo();
-  avion.volar();
-  avion.acelerar();
+  Vehiculo avion = Avion();
+  Vehiculo bote = Bote();
+  Vehiculo auto = Auto();
 
-  print("\n---- Bote ----");
-  bote.mostrarTipo();
-  bote.navegar();
-  bote.acelerar();
+  vehiculos.add(avion);
+  vehiculos.add(bote);
+  vehiculos.add(auto);
 
-  print("\n---- Auto ----");
-  auto.mostrarTipo();
-  auto.acelerar();
+  // OUTPUT
+  for (var v in vehiculos) {
+    v.usarVehiculo();
+    print('---');
+  }
 }
