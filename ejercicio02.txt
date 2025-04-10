@@ -1,0 +1,78 @@
+// Mixins 
+
+mixin LanzadorHechizos {
+  void lanzarHechizo() {
+    print("Lanzando un hechizo poderoso...");
+  }
+}
+
+mixin Atacante {
+  void atacar() {
+    print("Atacando con un arma...");
+  }
+}
+
+mixin Sanador {
+  void curar() {
+    print("Curando a un aliado...");
+  }
+}
+
+// Clase base 
+
+class Personaje {
+  void mostrarTipo() {
+    print("Soy un personaje");
+  }
+}
+
+// Clases hijas
+
+class Mago extends Personaje with LanzadorHechizos, Sanador {
+  String nombre = "Mago";
+
+  @override
+  void mostrarTipo() {
+    print("Personaje: $nombre");
+  }
+}
+
+class Guerrero extends Personaje with Atacante {
+  String nombre = "Guerrero";
+
+  @override
+  void mostrarTipo() {
+    print("Personaje: $nombre");
+  }
+}
+
+class Paladin extends Personaje with Atacante, Sanador {
+  String nombre = "Paladín";
+
+  @override
+  void mostrarTipo() {
+    print("Personaje: $nombre");
+  }
+}
+
+// Funcion principal
+
+void main() {
+  var mago = Mago();
+  var guerrero = Guerrero();
+  var paladin = Paladin();
+
+  print("---- Mago ----");
+  mago.mostrarTipo();
+  mago.lanzarHechizo();
+  mago.curar();
+
+  print("\n---- Guerrero ----");
+  guerrero.mostrarTipo();
+  guerrero.atacar();
+
+  print("\n---- Paladín ----");
+  paladin.mostrarTipo();
+  paladin.atacar();
+  paladin.curar();
+}
