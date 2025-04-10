@@ -1,4 +1,4 @@
-// Mixins 
+// Mixins de habilidades
 
 mixin LanzadorHechizos {
   void lanzarHechizo() {
@@ -18,61 +18,56 @@ mixin Sanador {
   }
 }
 
-// Clase base 
+// Clase base
 
 class Personaje {
-  void mostrarTipo() {
-    print("Soy un personaje");
+  void usarHabilidad() {
+    print("Usando habilidad genérica");
   }
 }
 
 // Clases hijas
 
 class Mago extends Personaje with LanzadorHechizos, Sanador {
-  String nombre = "Mago";
-
   @override
-  void mostrarTipo() {
-    print("Personaje: $nombre");
+  void usarHabilidad() {
+    lanzarHechizo();
+    curar();
   }
 }
 
 class Guerrero extends Personaje with Atacante {
-  String nombre = "Guerrero";
-
   @override
-  void mostrarTipo() {
-    print("Personaje: $nombre");
+  void usarHabilidad() {
+    atacar();
   }
 }
 
 class Paladin extends Personaje with Atacante, Sanador {
-  String nombre = "Paladín";
-
   @override
-  void mostrarTipo() {
-    print("Personaje: $nombre");
+  void usarHabilidad() {
+    atacar();
+    curar();
   }
 }
 
-// Funcion principal
+// Función principal 
 
 void main() {
-  var mago = Mago();
-  var guerrero = Guerrero();
-  var paladin = Paladin();
+  // INPUT
+  List<Personaje> personajes = [];
 
-  print("---- Mago ----");
-  mago.mostrarTipo();
-  mago.lanzarHechizo();
-  mago.curar();
+  Personaje mago = Mago();
+  Personaje guerrero = Guerrero();
+  Personaje paladin = Paladin();
 
-  print("\n---- Guerrero ----");
-  guerrero.mostrarTipo();
-  guerrero.atacar();
+  personajes.add(mago);
+  personajes.add(guerrero);
+  personajes.add(paladin);
 
-  print("\n---- Paladín ----");
-  paladin.mostrarTipo();
-  paladin.atacar();
-  paladin.curar();
+  // OUTPUT
+  for (var personaje in personajes) {
+    personaje.usarHabilidad();
+    print('---');
+  }
 }

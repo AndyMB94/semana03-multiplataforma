@@ -1,0 +1,78 @@
+// Mixins
+
+mixin Acelerador {
+  void acelerar() {
+    print("Acelerando...");
+  }
+}
+
+mixin Volador {
+  void volar() {
+    print("Estoy volando");
+  }
+}
+
+mixin Navegador {
+  void navegar() {
+    print("Estoy navegando");
+  }
+}
+
+// Clase base 
+
+class Vehiculo {
+  void mostrarTipo() {
+    print("Soy un vehículo");
+  }
+}
+
+// Clases hijas
+
+class Avion extends Vehiculo with Volador, Acelerador {
+  String nombre = "Boeing 747";
+
+  @override
+  void mostrarTipo() {
+    print("Avión: $nombre");
+  }
+}
+
+class Bote extends Vehiculo with Navegador, Acelerador {
+  String nombre = "Titanic";
+
+  @override
+  void mostrarTipo() {
+    print("Bote: $nombre");
+  }
+}
+
+class Auto extends Vehiculo with Acelerador {
+  String nombre = "Toyota Corolla";
+
+  @override
+  void mostrarTipo() {
+    print("Auto: $nombre");
+  }
+}
+
+// Funcion principal
+
+void main() {
+  var avion = Avion();
+  var bote = Bote();
+  var auto = Auto();
+
+  print("---- Avión ----");
+  avion.mostrarTipo();
+  avion.volar();
+  avion.acelerar();
+
+  print("\n---- Bote ----");
+  bote.mostrarTipo();
+  bote.navegar();
+  bote.acelerar();
+
+  print("\n---- Auto ----");
+  auto.mostrarTipo();
+  auto.acelerar();
+}
